@@ -1,0 +1,21 @@
+name: VulnAlerts
+
+on:
+  schedule:
+    - cron:  '0 5 * * *' # 5am, every day
+  workflow_dispatch: # allow manual runs
+jobs:
+  vulnalert:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+    - uses: blentz/vulnalerts@main
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        API_KEY: ${{ secrets.NVD_API_KEY}}
+    - name: done
+      run: echo 'done'

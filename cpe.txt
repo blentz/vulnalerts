@@ -1,2 +1,9 @@
-acme:thttpd
-nothings:stb_truetype
+cpe:2.3:*:atlassian:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:canonical:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:google:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:github:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:jenkins:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:jenkins-ci:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:okta:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:python:*:*:*:*:*:*:*:*:*
+cpe:2.3:*:slack:*:*:*:*:*:*:*:*:*
