@@ -36,12 +36,12 @@ def get_cpe_names(search_str="", retries=0):
     except requests.exceptions.HTTPError as exc:
         if exc.errno == 403 and retries <= 4:
             time.sleep(random.randint(10, 30))
-            get_cpe_names(search_str, retries=retries+1)
+            return get_cpe_names(search_str, retries=retries+1)
         print(exc)
         return []
     ret = set()
     for item in response.json()['products']:
-        if item['cpe']['deprecated'] == 'True':
+        if item['cpe']['deprecated'] != 'True':
             ret.add(item['cpe']['cpeName'])
     print("Found Products: %s" % ret)
     return list(ret)
@@ -119,7 +119,7 @@ def slack_block_format(product, description, cve_id, severity):
 
 def send_slack_alert(message, cve_count):
     url = os.getenv('SLACK_WEBHOOK')
-    slack_message = '{"blocks": [{"type": "section","text": {"type": "plain_text","emoji": true,"text": "Hello :wave:,' + \
+    slack_message = '{"blocks": [{"type": "section","text": {"type": "plain_text","emoji": true,"text": "Hello :wave:, ' + \
             str(cve_count) + \
             ' Security Vulnerabilities affecting your Tech Stack were disclosed today."}}' + \
             message + \
